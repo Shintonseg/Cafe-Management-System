@@ -9,6 +9,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import java.security.Key;
+import java.security.SecureRandom;
+import java.util.Base64;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -32,8 +34,9 @@ public class JwtUtil {
     }
 
     private Key getSigningKey(){
-        String secret = "20051936998D4D634F";
-        byte [] keyBytes = Decoders.BASE64.decode(secret);
+        Key key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
+        String base64Key = Base64.getEncoder().encodeToString(key.getEncoded());
+        byte [] keyBytes = Decoders.BASE64.decode(base64Key);
         return Keys.hmacShaKeyFor(keyBytes);
     }
 
