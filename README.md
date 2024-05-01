@@ -1,5 +1,5 @@
-# Cafe-Management-System
-Task Management System a web application designed to help users organize and track their tasks effectively.
+# Task-Management-System
+Task Management System is a web application designed to help users organize and track their tasks effectively.
 
 # Front-end
 Angular - 17.3.6
