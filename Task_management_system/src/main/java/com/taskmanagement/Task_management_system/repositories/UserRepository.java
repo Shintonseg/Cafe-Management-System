@@ -1,5 +1,6 @@
 package com.taskmanagement.Task_management_system.repositories;
 
+import com.taskmanagement.Task_management_system.enums.UserRole;
 import com.taskmanagement.Task_management_system.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -10,4 +11,6 @@ import java.util.Optional;
 @Repository
 public interface UserRepository extends JpaRepository<User,Long> {
     Optional<User> findFirstByEmail(String username);
+
+    Optional<User> findByUserRole(UserRole userRole);
 }
