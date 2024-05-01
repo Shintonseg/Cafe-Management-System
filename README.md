@@ -7,3 +7,11 @@ Node - 20.12.2
 Package Manager - npm - 10.5.0
 
 To add angular material  -> ng add @angular/material
+
+# Backend
+Java - 17
+Spring Boot - 3.2.5
+Gradle - 8.7
+
+# Database
+MySQL
