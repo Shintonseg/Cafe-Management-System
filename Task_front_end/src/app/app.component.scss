@@ -1,0 +1,31 @@
+.navbar {
+
+  padding: 10px;
+  display: flex;
+  align-items: center;
+
+  .spacer {
+    flex: 1; // Fill remaining space
+  }
+
+  .navbar-brand {
+    color: white; // Text color
+    font-weight: bold; // Make the text bold
+    font-size: 20px;
+  }
+
+  button {
+    color: white; // Text color
+    margin-left: 8px; // Add margin between buttons
+    text-transform: uppercase;
+  }
+
+  button.active {
+    font-weight: 600; // Make the text bold
+  }
+
+  .custom-toolbar {
+    background-color: #ff0000;
+  }
+
+}
