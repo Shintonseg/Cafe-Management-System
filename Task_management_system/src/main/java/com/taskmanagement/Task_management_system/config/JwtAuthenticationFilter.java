@@ -8,6 +8,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.lang.NonNull;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
@@ -29,15 +30,17 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, @NonNull HttpServletResponse response,@NonNull FilterChain filterChain) throws ServletException, IOException {
 
         final String authorizationHeader = request.getHeader("Authorization");
-        String userEmail = null;
-        String jwtToken = null;
+        final String userEmail;
+        final String jwtToken;
 
-        if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
+        if (StringUtils.isEmpty(authorizationHeader) || !StringUtils.startsWith(authorizationHeader,"Bearer ")) {
+            filterChain.doFilter(request,response);
+            return;
+        }
             jwtToken = authorizationHeader.substring(7);
             userEmail = jwtUtil.extractUsername(jwtToken);
-        }
 
-        if (userEmail != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+        if (StringUtils.isNotEmpty(userEmail) && SecurityContextHolder.getContext().getAuthentication() == null) {
             UserDetails userDetails = userService.userDetailService().loadUserByUsername(userEmail);
 
             if (jwtUtil.validateToken(jwtToken, userDetails)) {

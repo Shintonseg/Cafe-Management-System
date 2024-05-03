@@ -34,9 +34,7 @@ public class JwtUtil {
     }
 
     private Key getSigningKey(){
-        Key key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
-        String base64Key = Base64.getEncoder().encodeToString(key.getEncoded());
-        byte [] keyBytes = Decoders.BASE64.decode(base64Key);
+        byte [] keyBytes = Decoders.BASE64.decode("413F4428472B4B655368566D5970337336763979244226452948404D6351");
         return Keys.hmacShaKeyFor(keyBytes);
     }
 
@@ -46,7 +44,7 @@ public class JwtUtil {
     }
     private Claims extractAllClaims(String token) {
         return Jwts.parserBuilder().setSigningKey(getSigningKey())
-                .build().parseClaimsJwt(token).getBody();
+                .build().parseClaimsJws(token).getBody();
     }
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
