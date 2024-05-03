@@ -24,7 +24,7 @@ export class StorageService {
   }
 
   static getUser(): any {
-    return JSON.parse(localStorage.getItem(USER)??'');
+    return JSON.parse(localStorage.getItem(USER)??'{}');
   }
 
   static getUserRole():string {
