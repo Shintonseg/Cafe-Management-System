@@ -1,0 +1,35 @@
+.container {
+    max-width: 400px; 
+    margin: 0 auto;
+    
+  }
+  
+  .form-field {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  .mat-error {
+    color: red; 
+  }
+  
+  h2 {
+    font-size: 24px; 
+    margin-bottom: 20px;
+    text-align: center;
+    color: rgb(94, 94, 207);
+  }
+  
+  button {
+    margin-top: 20px;
+  }
+  
+  mat-card {
+    max-width: 400px;
+    width:100%;
+    padding: 20px;
+
+    @media screen and (max-width:500px) {
+        max-width: 90%;
+    }
+}

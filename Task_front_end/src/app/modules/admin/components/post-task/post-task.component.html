@@ -1,1 +1,44 @@
-<p>post-task works!</p>
+<div class="container">
+    <h2>Post a New Task</h2>
+    <form [formGroup]="taskForm">
+      
+      <mat-form-field appearance="outline" class="form-field">
+        <input matInput type="text" formControlName="title" placeholder="Title">
+        <mat-error *ngIf="taskForm.get('title')?.hasError('required')">Title is required</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="form-field">
+        <textarea matInput formControlName="description" placeholder="Description"></textarea>
+        <mat-error *ngIf="taskForm.get('description')?.hasError('required')">Description is required</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Due Date</mat-label>
+        <input matInput [matDatepicker]="dueDatePicker" formControlName="dueDate" placeholder="Due Date">
+        <mat-datepicker-toggle matSuffix [for]="dueDatePicker"></mat-datepicker-toggle>
+        <mat-datepicker #dueDatePicker></mat-datepicker>
+        <mat-error *ngIf="taskForm.get('dueDate')?.hasError('required')">Due Date is required</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Priority</mat-label>
+        <mat-select formControlName="priority">
+          <mat-option *ngFor="let priority of listOfPriorities" [value]="priority">{{ priority }}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="taskForm.get('priority')?.hasError('required')">Priority is required</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Select the employee</mat-label>
+        <mat-select formControlName="employeeId" name="employeeId">
+            <mat-option *ngFor="let employee of listOfEmployees" [value]="employee.id">
+            {{employee.name}}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="taskForm.get('employeeId')?.hasError('required')">Employee is required</mat-error>
+      </mat-form-field>
+
+      <button mat-raised-button type="submit" color="primary" [disabled]="taskForm.invalid"
+      (click)="postTask()">Submit</button>
+    </form>
+  </div>
+  
