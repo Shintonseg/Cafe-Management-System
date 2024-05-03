@@ -31,7 +31,7 @@ export class LoginComponent {
     console.log(this.loginForm.value);
     this.authService.login(this.loginForm.value).subscribe((res)=>{
       console.log(res);
-      if(res.id != null){
+      if(res.userId != null){
         this.snackbar.open('Login successful', 'Close', {duration:5000});
       }else{
         this.snackbar.open('Login failed, Try again', 'Close', {duration:5000, panelClass: 'error-snackbar'});
