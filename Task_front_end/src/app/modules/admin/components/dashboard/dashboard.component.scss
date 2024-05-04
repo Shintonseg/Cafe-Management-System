@@ -1,0 +1,82 @@
+.task-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; /* Adjust as needed */
+    background-color: #f8f8f8;
+    min-height: 37vh;
+    padding: 20px;
+  }
+  
+  .task-card {
+    width: calc(33.33% - 20px); /* Adjust the width of each card */
+    margin-bottom: 20px; /* Add some spacing between cards */
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    .task-details {
+        padding: 20px; /* Add padding to the task details */
+
+        .task-name {
+            font-size: 20px; /* Set the font size for the task name */
+            margin-bottom: 10px; /* Add some spacing below the task name */
+            font-weight: bold;
+            color: #108ee9;
+          }
+        .task-description {
+            margin-bottom: 10px; /* Add some spacing below the task description */
+        }
+        .task-info{
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 10px;
+            margin-bottom: 10px;
+
+            .info-row{
+                flex: 0 0 50%;
+                display: flex;
+                align-items: center;
+                margin-bottom: 8px;
+
+                .info-label{
+                    font-weight: 10px;
+                    margin-right: 5px;
+                }
+            }
+
+            .actions {
+                display: flex;
+                justify-content: flex-end;
+                margin-top: 10px;
+
+                .update-button {
+                    margin-right: 10px;
+                }
+
+                .view-button {
+                    margin-right: 10px;
+                }
+            }
+        }
+      }
+  }
+  
+  
+  
+  
+  
+  
+  
+  .task-info {
+    margin-top: 10px; /* Add some spacing above the task info */
+  }
+  
+  .info-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px; /* Add some spacing between info rows */
+  }
+  
+  .info-label {
+    font-weight: bold; /* Make the info label bold */
+    margin-right: 10px; /* Add some spacing between label and value */
+  }
+  
