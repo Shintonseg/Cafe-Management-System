@@ -1,13 +1,18 @@
 package com.taskmanagement.Task_management_system.services.admin;
 
+import com.taskmanagement.Task_management_system.dto.TaskDTO;
 import com.taskmanagement.Task_management_system.dto.UserDto;
+import com.taskmanagement.Task_management_system.enums.TaskStatus;
 import com.taskmanagement.Task_management_system.enums.UserRole;
+import com.taskmanagement.Task_management_system.model.Task;
 import com.taskmanagement.Task_management_system.model.User;
+import com.taskmanagement.Task_management_system.repositories.TaskRepository;
 import com.taskmanagement.Task_management_system.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -15,6 +20,7 @@ import java.util.stream.Collectors;
 public class AdminServiceImpl implements AdminService{
 
     private final UserRepository userRepository;
+    private final TaskRepository taskRepository;
 
     @Override
     public List<UserDto> getUsers() {
@@ -23,5 +29,21 @@ public class AdminServiceImpl implements AdminService{
                 .filter(user -> user.getUserRole()== UserRole.EMPLOYEE)
                 .map(User::getUserDto)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public TaskDTO createTask(TaskDTO taskDTO) {
+        Optional<User> optionalUser = userRepository.findById(taskDTO.getEmployeeId());
+        if(optionalUser.isPresent()){
+            Task task = new Task();
+            task.setTitle(taskDTO.getTitle());
+            task.setDescription(taskDTO.getDescription());
+            task.setPriority(taskDTO.getPriority());
+            task.setDueDate(taskDTO.getDueDate());
+            task.setTaskStatus(TaskStatus.INPROGRESS);
+            task.setUser(optionalUser.get());
+            return taskRepository.save(task).getTaskDTO();
+        }
+        return null;
     }
 }
