@@ -21,7 +21,8 @@ Gradle - `8.7`
 MySQL
 
 # Angular commands
-`ng g c login` - for generating login components- (html, scss, ts, spec.ts)
-`ng g s auth` - for generating auth service - (ts, spec.ts)
-`ng g m admin` - for generating admin module - (ts)
-`ng g m admin --routing=true` - for generating admin routing module - (module ts + routing module ts)
+`ng g c login` - for generating login components- (html, scss, ts, spec.ts).
+`ng g s auth` - for generating auth service - (ts, spec.ts).
+`ng g m admin` - for generating admin module - (ts).
+`ng g m admin --routing=true` - for generating admin routing module - (module ts + routing module ts).
+`ng serve` - compile angular application and start a development server
