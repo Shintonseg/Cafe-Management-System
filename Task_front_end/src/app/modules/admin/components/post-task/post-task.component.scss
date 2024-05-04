@@ -3,6 +3,12 @@
     margin: 0 auto;
     
   }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
   
   .form-field {
     width: 100%;
@@ -15,7 +21,7 @@
   
   h2 {
     font-size: 24px; 
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     text-align: center;
     color: rgb(94, 94, 207);
   }
