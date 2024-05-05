@@ -66,4 +66,19 @@ public class AdminServiceImpl implements AdminService{
     public TaskDTO getTaskById(Long id) {
         return taskRepository.findById(id).map(Task::getTaskDTO).orElse(null);
     }
+
+    @Override
+    public TaskDTO updateTask(Long taskId, TaskDTO taskDTO) {
+        Optional<Task> optionalTask = taskRepository.findById(taskId);
+        if (optionalTask.isPresent()){
+            Task task = optionalTask.get();
+            task.setTitle(taskDTO.getTitle());
+            task.setDescription(taskDTO.getDescription());
+            task.setPriority(taskDTO.getPriority());
+            task.setDueDate(taskDTO.getDueDate());
+            task.setTaskStatus(taskDTO.getTaskStatus());
+            taskRepository.save(task);
+        }
+        return taskDTO;
+    }
 }
