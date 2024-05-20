@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  mysqldb:
+    image: mysql:8.3.0
+    container_name: mysql-container
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: task_password
+      MYSQL_DATABASE: task_name
+      MYSQL_USER: task_user
+      MYSQL_PASSWORD: task_password
+    ports:
+      - "3307:3306"  # Expose MySQL port
+
+  springboot-app:
+    build: .
+    container_name: springboot-container
+    ports:
+      - "8080:8080"  # Expose Spring Boot port
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb:3306/task_name?useSSL=false
+      SPRING_DATASOURCE_USERNAME: task_user
+      SPRING_DATASOURCE_PASSWORD: task_password
+    depends_on:
+      - mysqldb
