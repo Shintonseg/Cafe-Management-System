@@ -21,6 +21,10 @@ repositories {
 	mavenCentral()
 }
 
+bootJar {
+	archiveFileName = 'Task-management.jar' // Custom JAR file name
+}
+
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
