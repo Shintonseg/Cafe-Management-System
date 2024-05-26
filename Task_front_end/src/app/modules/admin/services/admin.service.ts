@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { StorageService } from 'src/app/auth/services/storage/storage.service';
 
-const BASE_URL = "http://localhost:8080";
+const BASE_URL = "http://task.us-east-1.elasticbeanstalk.com/";
 @Injectable({
   providedIn: 'root'
 })
@@ -35,6 +35,18 @@ export class AdminService {
     return this.http.delete(BASE_URL+"/api/admin/task/"+id, {
       headers: this.createAuthorizationHeader()
     })
+   }
+
+   getTaskById(id: number): Observable<any>{
+    return this.http.get(BASE_URL+"/api/admin/task/"+id, {
+      headers: this.createAuthorizationHeader()
+    });
+   }
+
+   updateTask(id: number, taskDTO: any): Observable<any>{
+    return this.http.put(BASE_URL+"/api/admin/task/update/"+id ,taskDTO, {
+      headers: this.createAuthorizationHeader()
+    });
    }
 
    private createAuthorizationHeader(): HttpHeaders{
