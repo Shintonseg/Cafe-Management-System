@@ -1,11 +1,18 @@
+server:
+  port: 5000
 spring:
   application:
     name: Task_management_system
+#  datasource:
+#    url: jdbc:mysql://localhost:3306/task_management
+#    username: root
+#    password: Smart@123
   datasource:
-    url: jdbc:mysql://localhost:3306/task_management
-    username: root
-    password: Smart@123
+    url: jdbc:mysql://task-db.c3aucseqoetq.us-east-1.rds.amazonaws.com:3306/task
+    username: admin
+    password: amazonsql
   jpa:
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQLDialect
     hibernate:
-      ddl-auto: update
-    show-sql: true
+      ddl-auto: create-drop
